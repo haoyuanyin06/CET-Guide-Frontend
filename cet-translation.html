@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>四六级翻译秘籍 · Translation Master Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: oklch(0.12 0.02 260);
+    --paper: oklch(0.96 0.005 95);
+    --acid: oklch(0.92 0.18 110);
+    --flame: oklch(0.55 0.22 25);
+    --neon: oklch(0.68 0.22 165);
+    --violet: oklch(0.48 0.19 300);
+    --slate: oklch(0.22 0.01 260);
+    --cement: oklch(0.42 0.01 260);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: clamp(15px, 1.2vw, 18px);
+  }
+
+  body {
+    font-family: 'Space Grotesk', 'Noto Sans SC', system-ui, sans-serif;
+    background: var(--ink);
+    color: var(--paper);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(2rem, 8vw, 6rem);
+    position: relative;
+    background: var(--ink);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 3px, var(--slate) 3px, var(--slate) 4px);
+    opacity: 0.08;
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--acid);
+    color: var(--ink);
+    padding: 0.25rem 1rem;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 10vw, 7rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 .line2 {
+    display: block;
+    color: var(--acid);
+  }
+
+  .hero-sub {
+    margin-top: 2rem;
+    font-size: 1.1rem;
+    color: var(--cement);
+    max-width: 42ch;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-arrow {
+    margin-top: 4rem;
+    font-size: 2.5rem;
+    animation: bob 1.6s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
+    color: var(--flame);
+  }
+
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(14px); }
+  }
+
+  .section-head {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    padding: 1.5rem clamp(2rem, 8vw, 6rem);
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    backdrop-filter: blur(12px);
+    mix-blend-mode: difference;
+  }
+
+  .section-head--acid  { background: color-mix(in oklch, var(--acid) 90%, transparent); color: var(--ink); }
+  .section-head--flame { background: color-mix(in oklch, var(--flame) 85%, transparent); color: var(--paper); }
+  .section-head--neon  { background: color-mix(in oklch, var(--neon) 85%, transparent); color: var(--ink); }
+  .section-head--violet{ background: color-mix(in oklch, var(--violet) 80%, transparent); color: var(--paper); }
+
+  .phrase-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: var(--slate);
+    border-top: 2px solid var(--slate);
+  }
+
+  .phrase-row {
+    background: var(--ink);
+    padding: 1.6rem clamp(2rem, 8vw, 6rem);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1.5rem;
+    transition: background 0.18s;
+  }
+
+  .phrase-row:hover {
+    background: color-mix(in oklch, var(--acid) 6%, var(--ink));
+  }
+
+  .phrase-en {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--acid);
+    min-width: 16ch;
+  }
+
+  .phrase-zh {
+    font-size: 0.95rem;
+    color: var(--paper);
+    flex: 1;
+  }
+
+  .phrase-tag {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.15em 0.6em;
+    background: var(--slate);
+    color: var(--cement);
+    white-space: nowrap;
+  }
+
+  .tip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2px;
+    background: var(--slate);
+    border-top: 2px solid var(--slate);
+  }
+
+  .tip-card {
+    background: var(--ink);
+    padding: 2rem clamp(1.5rem, 3vw, 2.5rem) 1.8rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tip-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .tip-card:nth-child(odd):hover::before {
+    background: color-mix(in oklch, var(--acid) 10%, transparent); opacity: 1;
+  }
+  .tip-card:nth-child(even):hover::before {
+    background: color-mix(in oklch, var(--flame) 8%, transparent); opacity: 1;
+  }
+
+  .tip-card .tip-num {
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--flame);
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tip-card .tip-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--acid);
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tip-card .tip-desc {
+    font-size: 0.88rem;
+    color: var(--cement);
+    position: relative;
+    z-index: 1;
+    line-height: 1.7;
+  }
+
+  .footer {
+    padding: 5rem clamp(2rem, 8vw, 6rem) 4rem;
+    background: var(--slate);
+    color: var(--cement);
+    font-size: 0.85rem;
+    text-align: center;
+  }
+
+  .footer .count {
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--paper);
+    display: block;
+  }
+
+  .footer .count span { color: var(--flame); }
+
+  @media (max-width: 600px) {
+    .phrase-row { flex-direction: column; padding: 1.2rem 1.5rem; }
+    .phrase-en { min-width: unset; }
+    .tip-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-arrow { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <span class="hero-badge">CET-4 & CET-6 翻译专项</span>
+  <h1>
+    翻译<br>
+    <span class="line2">秘籍</span>
+  </h1>
+  <p class="hero-sub">
+    四六级翻译 106.5 分，掌握核心技巧即可稳拿 80+。
+    覆盖万能翻译法则、高频话题词汇、必背句式模板和真题陷阱规避。
+  </p>
+  <div class="hero-arrow" aria-hidden="true">↓</div>
+</section>
+
+<!-- 核心法则 -->
+<section id="rules">
+  <div class="section-head section-head--acid">万能翻译法则 · Golden Rules</div>
+  <div class="tip-grid">
+
+    <div class="tip-card">
+      <div class="tip-num">01</div>
+      <div class="tip-title">主干先行</div>
+      <div class="tip-desc">先找主谓宾，再补定状补。中文喜欢铺陈背景，英文习惯先出主干。例："在中国传统文化中，红色象征着好运" → Red symbolizes good luck in traditional Chinese culture.</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-num">02</div>
+      <div class="tip-title">词类转换</div>
+      <div class="tip-desc">中文多用动词，英文多用名词/介词。例："这本书的出版改变了教育" → The publication of this book transformed education. （"出版"动词→名词 publication）</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-num">03</div>
+      <div class="tip-title">语态转换</div>
+      <div class="tip-desc">中文多主动，英文翻译中被动语态是高频考点。例："人们普遍认为" → It is widely believed that... / "这些措施已经被采取了" → These measures have been taken.</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-num">04</div>
+      <div class="tip-title">拆长合短</div>
+      <div class="tip-desc">中文长句拆成几个英文短句；中文多个短句合并为一个英文长句。核心原则：英文以主谓结构为单位，一个句子一个核心谓语。</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-num">05</div>
+      <div class="tip-title">不会就绕</div>
+      <div class="tip-desc">遇到不会的词，用上位词、解释性表达或同义替换绕过去，切忌空着或生造词。"灯笼" → traditional Chinese light decoration，"针灸" → traditional Chinese medical treatment with needles</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-num">06</div>
+      <div class="tip-title">宁顺勿硬</div>
+      <div class="tip-desc">翻译的核心是"传达意思"而非"字字对应"。宁可牺牲个别细节，也要保证英文句子通顺、符合英文表达习惯。</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-num">07</div>
+      <div class="tip-title">无主语句</div>
+      <div class="tip-desc">中文无主语句用被动或用 there be / it is 处理。例："应该鼓励年轻人多读书" → Young people should be encouraged to read more.</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-num">08</div>
+      <div class="tip-title">语序调整</div>
+      <div class="tip-desc">中文定语在前，英文定语可后置（介词短语/定语从句）。例："我昨天在图书馆遇到的那个女孩" → The girl (whom) I met in the library yesterday</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 高频话题词汇 -->
+<section id="topics">
+  <div class="section-head section-head--flame">高频话题词汇 · Topic Vocabulary</div>
+
+  <div style="padding: 2rem clamp(2rem, 8vw, 6rem) 0.5rem; background: var(--ink);">
+    <span style="display:inline-block;background:var(--flame);color:var(--paper);padding:0.15em 1em;font-weight:700;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;">中国文化 · Chinese Culture</span>
+  </div>
+  <div class="phrase-list">
+    <div class="phrase-row"><span class="phrase-en">the Spring Festival / Chinese New Year</span><span class="phrase-zh">春节</span><span class="phrase-tag">节日</span></div>
+    <div class="phrase-row"><span class="phrase-en">the Mid-Autumn Festival</span><span class="phrase-zh">中秋节</span><span class="phrase-tag">节日</span></div>
+    <div class="phrase-row"><span class="phrase-en">the Dragon Boat Festival</span><span class="phrase-zh">端午节</span><span class="phrase-tag">节日</span></div>
+    <div class="phrase-row"><span class="phrase-en">paper cutting</span><span class="phrase-zh">剪纸</span><span class="phrase-tag">传统艺术</span></div>
+    <div class="phrase-row"><span class="phrase-en">calligraphy</span><span class="phrase-zh">书法</span><span class="phrase-tag">传统艺术</span></div>
+    <div class="phrase-row"><span class="phrase-en">Beijing Opera / Peking Opera</span><span class="phrase-zh">京剧</span><span class="phrase-tag">传统艺术</span></div>
+    <div class="phrase-row"><span class="phrase-en">traditional Chinese painting</span><span class="phrase-zh">国画</span><span class="phrase-tag">传统艺术</span></div>
+    <div class="phrase-row"><span class="phrase-en">Confucianism</span><span class="phrase-zh">儒家思想</span><span class="phrase-tag">哲学</span></div>
+    <div class="phrase-row"><span class="phrase-en">the Four Great Inventions</span><span class="phrase-zh">四大发明</span><span class="phrase-tag">历史</span></div>
+    <div class="phrase-row"><span class="phrase-en">the Silk Road</span><span class="phrase-zh">丝绸之路</span><span class="phrase-tag">历史</span></div>
+    <div class="phrase-row"><span class="phrase-en">dumpling / jiaozi</span><span class="phrase-zh">饺子</span><span class="phrase-tag">饮食</span></div>
+    <div class="phrase-row"><span class="phrase-en">red envelope / lucky money</span><span class="phrase-zh">红包</span><span class="phrase-tag">习俗</span></div>
+  </div>
+
+  <div style="padding: 2.5rem clamp(2rem, 8vw, 6rem) 0.5rem; background: var(--ink);">
+    <span style="display:inline-block;background:var(--neon);color:var(--ink);padding:0.15em 1em;font-weight:700;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;">社会与教育 · Society & Education</span>
+  </div>
+  <div class="phrase-list">
+    <div class="phrase-row"><span class="phrase-en">nine-year compulsory education</span><span class="phrase-zh">九年义务教育</span><span class="phrase-tag">教育</span></div>
+    <div class="phrase-row"><span class="phrase-en">college entrance examination (Gaokao)</span><span class="phrase-zh">高考</span><span class="phrase-tag">教育</span></div>
+    <div class="phrase-row"><span class="phrase-en">lifelong learning</span><span class="phrase-zh">终身学习</span><span class="phrase-tag">教育</span></div>
+    <div class="phrase-row"><span class="phrase-en">urbanization</span><span class="phrase-zh">城镇化</span><span class="phrase-tag">社会</span></div>
+    <div class="phrase-row"><span class="phrase-en">aging population</span><span class="phrase-zh">人口老龄化</span><span class="phrase-tag">社会</span></div>
+    <div class="phrase-row"><span class="phrase-en">the gap between the rich and the poor</span><span class="phrase-zh">贫富差距</span><span class="phrase-tag">社会</span></div>
+    <div class="phrase-row"><span class="phrase-en">public transportation</span><span class="phrase-zh">公共交通</span><span class="phrase-tag">社会</span></div>
+    <div class="phrase-row"><span class="phrase-en">high-speed rail</span><span class="phrase-zh">高铁</span><span class="phrase-tag">交通</span></div>
+    <div class="phrase-row"><span class="phrase-en">shared bicycles</span><span class="phrase-zh">共享单车</span><span class="phrase-tag">社会</span></div>
+    <div class="phrase-row"><span class="phrase-en">mobile payment</span><span class="phrase-zh">移动支付</span><span class="phrase-tag">科技</span></div>
+    <div class="phrase-row"><span class="phrase-en">e-commerce</span><span class="phrase-zh">电子商务</span><span class="phrase-tag">科技</span></div>
+    <div class="phrase-row"><span class="phrase-en">artificial intelligence (AI)</span><span class="phrase-zh">人工智能</span><span class="phrase-tag">科技</span></div>
+  </div>
+
+  <div style="padding: 2.5rem clamp(2rem, 8vw, 6rem) 0.5rem; background: var(--ink);">
+    <span style="display:inline-block;background:var(--violet);color:var(--paper);padding:0.15em 1em;font-weight:700;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;">环境与健康 · Environment & Health</span>
+  </div>
+  <div class="phrase-list">
+    <div class="phrase-row"><span class="phrase-en">environmental protection</span><span class="phrase-zh">环境保护</span><span class="phrase-tag">环境</span></div>
+    <div class="phrase-row"><span class="phrase-en">sustainable development</span><span class="phrase-zh">可持续发展</span><span class="phrase-tag">环境</span></div>
+    <div class="phrase-row"><span class="phrase-en">renewable energy</span><span class="phrase-zh">可再生能源</span><span class="phrase-tag">环境</span></div>
+    <div class="phrase-row"><span class="phrase-en">carbon emission</span><span class="phrase-zh">碳排放</span><span class="phrase-tag">环境</span></div>
+    <div class="phrase-row"><span class="phrase-en">air pollution</span><span class="phrase-zh">空气污染</span><span class="phrase-tag">环境</span></div>
+    <div class="phrase-row"><span class="phrase-en">physical and mental health</span><span class="phrase-zh">身心健康</span><span class="phrase-tag">健康</span></div>
+    <div class="phrase-row"><span class="phrase-en">balanced diet</span><span class="phrase-zh">均衡饮食</span><span class="phrase-tag">健康</span></div>
+    <div class="phrase-row"><span class="phrase-en">regular exercise</span><span class="phrase-zh">规律运动</span><span class="phrase-tag">健康</span></div>
+  </div>
+</section>
+
+<!-- 翻译必背句式 -->
+<section id="patterns">
+  <div class="section-head section-head--neon">必背句式模板 · Sentence Patterns</div>
+  <div class="phrase-list">
+
+    <div class="phrase-row">
+      <span class="phrase-en">It is widely acknowledged that ...</span>
+      <span class="phrase-zh">人们普遍认为……</span>
+      <span class="phrase-tag">万能开头</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">... can be traced back to ...</span>
+      <span class="phrase-zh">……可以追溯到……</span>
+      <span class="phrase-tag">历史类</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">... dates back to / has a history of ...</span>
+      <span class="phrase-zh">……有……的历史</span>
+      <span class="phrase-tag">历史类</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">... is regarded / considered as ...</span>
+      <span class="phrase-zh">……被认为是……</span>
+      <span class="phrase-tag">定义类</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">... plays an increasingly important role in ...</span>
+      <span class="phrase-zh">……在……中发挥越来越重要的作用</span>
+      <span class="phrase-tag">重要性</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">With the rapid development of ..., ...</span>
+      <span class="phrase-zh">随着……的快速发展，……</span>
+      <span class="phrase-tag">背景引入</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">... has attracted widespread attention.</span>
+      <span class="phrase-zh">……引起了广泛关注。</span>
+      <span class="phrase-tag">现象描述</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">... is characterized by ...</span>
+      <span class="phrase-zh">……的特点是……</span>
+      <span class="phrase-tag">特征描述</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">... has undergone tremendous changes.</span>
+      <span class="phrase-zh">……经历了巨大的变化。</span>
+      <span class="phrase-tag">变化描述</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">... is no longer what it used to be.</span>
+      <span class="phrase-zh">……今非昔比。</span>
+      <span class="phrase-tag">变化描述</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">Efforts should be made to ...</span>
+      <span class="phrase-zh">应该努力……</span>
+      <span class="phrase-tag">建议类</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">Great importance has been attached to ...</span>
+      <span class="phrase-zh">……受到了高度重视。</span>
+      <span class="phrase-tag">重视类</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">There is no denying that ...</span>
+      <span class="phrase-zh">不可否认……</span>
+      <span class="phrase-tag">强调类</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">It is ... that ... （强调句）</span>
+      <span class="phrase-zh">正是……（才）……</span>
+      <span class="phrase-tag">句式升级</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">Not only ... but also ... (倒装)</span>
+      <span class="phrase-zh">不仅……而且……</span>
+      <span class="phrase-tag">句式升级</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- 常见错误与陷阱 -->
+<section id="pitfalls">
+  <div class="section-head section-head--flame">常见陷阱 · Common Pitfalls</div>
+  <div class="phrase-list">
+
+    <div class="phrase-row" style="border-left:4px solid var(--flame);">
+      <span class="phrase-en" style="color:var(--flame);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;min-width:10ch;">陷阱 1</span>
+      <span class="phrase-zh" style="font-weight:600;">逐字死译。中文"人山人海"不能译成 people mountain people sea → 正确：huge crowds of people / a sea of people。</span>
+    </div>
+    <div class="phrase-row" style="border-left:4px solid var(--acid);">
+      <span class="phrase-en" style="color:var(--acid);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;min-width:10ch;">陷阱 2</span>
+      <span class="phrase-zh" style="font-weight:600;">中文流水句一译到底。中文一段话可能 5-6 个逗号，英文必须拆成 2-3 个独立句，否则 run-on sentence 扣分。</span>
+    </div>
+    <div class="phrase-row" style="border-left:4px solid var(--neon);">
+      <span class="phrase-en" style="color:var(--neon);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;min-width:10ch;">陷阱 3</span>
+      <span class="phrase-zh" style="font-weight:600;">忽略时态。中文没有时态标记，但英文必须有。注意上下文时间提示词："已经"→完成时、"正在"→进行时、"将"→将来时。</span>
+    </div>
+    <div class="phrase-row" style="border-left:4px solid var(--violet);">
+      <span class="phrase-en" style="color:var(--violet);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;min-width:10ch;">陷阱 4</span>
+      <span class="phrase-zh" style="font-weight:600;">主谓不一致。中文无单复数变化，英文必须检查主语和谓语是否在人称和数上一致。尤其是长主语时容易忘。</span>
+    </div>
+    <div class="phrase-row" style="border-left:4px solid var(--flame);">
+      <span class="phrase-en" style="color:var(--flame);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;min-width:10ch;">陷阱 5</span>
+      <span class="phrase-zh" style="font-weight:600;">冠词丢三落四。中文没有冠词，英文该加 a/an/the 的地方不能省。专有名词（如 the Great Wall）冠词固定搭配要记牢。</span>
+    </div>
+    <div class="phrase-row" style="border-left:4px solid var(--acid);">
+      <span class="phrase-en" style="color:var(--acid);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;min-width:10ch;">陷阱 6</span>
+      <span class="phrase-zh" style="font-weight:600;">生造词。把"经济繁荣"译成 economic boom boom 这种低级错误一定要避免。不会的词绕过去，宁可用简单词解释清楚。</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- 真题演练 -->
+<section id="practice">
+  <div class="section-head section-head--violet">真题案例 · Real Exam Examples</div>
+  <div class="phrase-list">
+
+    <div class="phrase-row">
+      <span class="phrase-en" style="color:var(--violet);font-weight:700;min-width:3ch;">四级</span>
+      <span class="phrase-zh" style="font-weight:700;color:var(--paper);">"中国结最初是由于工编织的，现已成为一种优雅的工艺品。"</span>
+    </div>
+    <div class="phrase-row" style="background:color-mix(in oklch, var(--violet) 5%, var(--ink));">
+      <span class="phrase-en" style="color:var(--neon);font-weight:700;min-width:3ch;">参考</span>
+      <span class="phrase-zh" style="color:var(--acid);">The Chinese knot was originally woven by hand, and has now become an elegant craft.</span>
+    </div>
+
+    <div class="phrase-row">
+      <span class="phrase-en" style="color:var(--violet);font-weight:700;min-width:3ch;">四级</span>
+      <span class="phrase-zh" style="font-weight:700;color:var(--paper);">"太极拳是一种极好的运动方式，适合所有年龄段的人。"</span>
+    </div>
+    <div class="phrase-row" style="background:color-mix(in oklch, var(--violet) 5%, var(--ink));">
+      <span class="phrase-en" style="color:var(--neon);font-weight:700;min-width:3ch;">参考</span>
+      <span class="phrase-zh" style="color:var(--acid);">Tai Chi is an excellent form of exercise, suitable for people of all ages.</span>
+    </div>
+
+    <div class="phrase-row">
+      <span class="phrase-en" style="color:var(--violet);font-weight:700;min-width:3ch;">六级</span>
+      <span class="phrase-zh" style="font-weight:700;color:var(--paper);">"汉语方言的多样性体现了中国丰富的地域文化。"</span>
+    </div>
+    <div class="phrase-row" style="background:color-mix(in oklch, var(--violet) 5%, var(--ink));">
+      <span class="phrase-en" style="color:var(--neon);font-weight:700;min-width:3ch;">参考</span>
+      <span class="phrase-zh" style="color:var(--acid);">The diversity of Chinese dialects reflects the rich regional cultures of China.</span>
+    </div>
+
+    <div class="phrase-row">
+      <span class="phrase-en" style="color:var(--violet);font-weight:700;min-width:3ch;">六级</span>
+      <span class="phrase-zh" style="font-weight:700;color:var(--paper);">"近年来，中国在人工智能领域取得了举世瞩目的成就。"</span>
+    </div>
+    <div class="phrase-row" style="background:color-mix(in oklch, var(--violet) 5%, var(--ink));">
+      <span class="phrase-en" style="color:var(--neon);font-weight:700;min-width:3ch;">参考</span>
+      <span class="phrase-zh" style="color:var(--acid);">In recent years, China has made remarkable achievements in the field of artificial intelligence.</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- 临场 checklist -->
+<section id="checklist">
+  <div class="section-head section-head--acid">翻译临场 Checklist</div>
+  <div class="tip-grid">
+
+    <div class="tip-card">
+      <div class="tip-num" style="color:var(--neon);">1</div>
+      <div class="tip-title">先通读全段（1min）</div>
+      <div class="tip-desc">不要上来就逐句翻译。快速扫一遍中文段落，判断话题类型（文化/社会/科技），激活相关词汇储备。</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-num" style="color:var(--neon);">2</div>
+      <div class="tip-title">逐句翻译，先主干（20min）</div>
+      <div class="tip-desc">每句先确定主谓宾，再补充状语/定语/从句。长句果断拆分，2-3 个英文短句优于一个错乱长句。</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-num" style="color:var(--neon);">3</div>
+      <div class="tip-title">不会的词绕过去</div>
+      <div class="tip-desc">用上位词替代或用简单表达解释。只要意思传达准确就不会扣大分，空着或生造词一定扣分。</div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-num" style="color:var(--neon);">4</div>
+      <div class="tip-title">通读检查（4min）</div>
+      <div class="tip-desc">逐句检查：主谓一致？时态正确？冠词没丢？单词拼写？中文意思有没有漏译？</div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <span class="count"><span>8</span> Rules · <span>32</span> Topic Words · <span>15</span> Patterns</span>
+  <p style="margin-top:1.5rem;">Brutalist High-Contrast · Translation Master Guide · 2026</p>
+</footer>
+
+</body>
+</html>

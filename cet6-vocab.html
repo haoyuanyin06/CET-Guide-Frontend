@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CET-6 高频词汇 · 考前冲刺</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: oklch(0.12 0.02 260);
+    --paper: oklch(0.96 0.005 95);
+    --acid: oklch(0.92 0.18 110);
+    --flame: oklch(0.55 0.22 25);
+    --neon: oklch(0.68 0.22 165);
+    --violet: oklch(0.48 0.19 300);
+    --slate: oklch(0.22 0.01 260);
+    --cement: oklch(0.42 0.01 260);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: clamp(15px, 1.2vw, 18px);
+  }
+
+  body {
+    font-family: 'Space Grotesk', 'Noto Sans SC', system-ui, sans-serif;
+    background: var(--ink);
+    color: var(--paper);
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(2rem, 8vw, 6rem);
+    position: relative;
+    background: var(--ink);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 3px, var(--slate) 3px, var(--slate) 4px);
+    opacity: 0.08;
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--acid);
+    color: var(--ink);
+    padding: 0.25rem 1rem;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 10vw, 7rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 .line2 {
+    display: block;
+    color: var(--acid);
+  }
+
+  .hero-sub {
+    margin-top: 2rem;
+    font-size: 1.1rem;
+    color: var(--cement);
+    max-width: 38ch;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-arrow {
+    margin-top: 4rem;
+    font-size: 2.5rem;
+    animation: bob 1.6s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
+    color: var(--flame);
+  }
+
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(14px); }
+  }
+
+  /* ── Section Divider ── */
+  .section-head {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    padding: 1.5rem clamp(2rem, 8vw, 6rem);
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    backdrop-filter: blur(12px);
+    mix-blend-mode: difference;
+  }
+
+  .section-head--acid  { background: color-mix(in oklch, var(--acid) 90%, transparent); color: var(--ink); }
+  .section-head--flame { background: color-mix(in oklch, var(--flame) 85%, transparent); color: var(--paper); }
+  .section-head--neon  { background: color-mix(in oklch, var(--neon) 85%, transparent); color: var(--ink); }
+  .section-head--violet{ background: color-mix(in oklch, var(--violet) 80%, transparent); color: var(--paper); }
+
+  /* ── Grid ── */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2px;
+    background: var(--slate);
+    border-top: 2px solid var(--slate);
+  }
+
+  .vocab-card {
+    background: var(--ink);
+    padding: 2rem clamp(1.2rem, 3vw, 2.5rem) 1.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: background 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .vocab-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .vocab-card:nth-child(4n+1):hover::before {
+    background: color-mix(in oklch, var(--acid) 15%, transparent); opacity: 1;
+  }
+  .vocab-card:nth-child(4n+2):hover::before {
+    background: color-mix(in oklch, var(--flame) 12%, transparent); opacity: 1;
+  }
+  .vocab-card:nth-child(4n+3):hover::before {
+    background: color-mix(in oklch, var(--neon) 12%, transparent); opacity: 1;
+  }
+  .vocab-card:nth-child(4n+4):hover::before {
+    background: color-mix(in oklch, var(--violet) 12%, transparent); opacity: 1;
+  }
+
+  .vocab-card .word {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .vocab-card:nth-child(4n+1) .word { color: var(--acid); }
+  .vocab-card:nth-child(4n+2) .word { color: var(--flame); }
+  .vocab-card:nth-child(4n+3) .word { color: var(--neon); }
+  .vocab-card:nth-child(4n+4) .word { color: var(--violet); }
+
+  .vocab-card .phonetic {
+    font-size: 0.75rem;
+    color: var(--cement);
+    letter-spacing: 0.02em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .vocab-card .meaning {
+    font-size: 0.95rem;
+    color: var(--paper);
+    position: relative;
+    z-index: 1;
+    margin-top: 0.2rem;
+  }
+
+  .vocab-card .example {
+    font-size: 0.8rem;
+    color: var(--cement);
+    font-style: italic;
+    margin-top: 0.6rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--slate);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Phrases ── */
+  .phrase-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: var(--slate);
+    border-top: 2px solid var(--slate);
+  }
+
+  .phrase-row {
+    background: var(--ink);
+    padding: 1.6rem clamp(2rem, 8vw, 6rem);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1.5rem;
+    transition: background 0.18s;
+  }
+
+  .phrase-row:hover {
+    background: color-mix(in oklch, var(--acid) 6%, var(--ink));
+  }
+
+  .phrase-en {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--acid);
+    min-width: 18ch;
+  }
+
+  .phrase-zh {
+    font-size: 0.9rem;
+    color: var(--paper);
+    flex: 1;
+  }
+
+  .phrase-tag {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.15em 0.6em;
+    background: var(--slate);
+    color: var(--cement);
+    white-space: nowrap;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    padding: 5rem clamp(2rem, 8vw, 6rem) 4rem;
+    background: var(--slate);
+    color: var(--cement);
+    font-size: 0.85rem;
+    text-align: center;
+  }
+
+  .footer .count {
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--paper);
+    display: block;
+  }
+
+  .footer .count span { color: var(--flame); }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .phrase-row { flex-direction: column; padding: 1.2rem 1.5rem; }
+    .phrase-en { min-width: unset; }
+    .vocab-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-arrow { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <span class="hero-badge">2026 考前冲刺</span>
+  <h1>
+    CET-6<br>
+    <span class="line2">高频词汇</span>
+  </h1>
+  <p class="hero-sub">
+    精选六级真题中出现频率最高的 40 个核心词汇与 20 条写作/翻译黄金短句，
+    撞色排版 + 强烈对比，助你考前高效记忆。
+  </p>
+  <div class="hero-arrow" aria-hidden="true">↓</div>
+</section>
+
+<section id="vocab">
+  <div class="section-head section-head--acid">核心词汇 · Essential Words</div>
+  <div class="vocab-grid">
+
+    <div class="vocab-card">
+      <span class="word">substantial</span>
+      <span class="phonetic">/səbˈstænʃəl/</span>
+      <span class="meaning">大量的；实质的；重大的</span>
+      <span class="example">A substantial number of students participated in the survey.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">deteriorate</span>
+      <span class="phonetic">/dɪˈtɪriəreɪt/</span>
+      <span class="meaning">恶化，变坏</span>
+      <span class="example">The patient's condition began to deteriorate rapidly.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">controversy</span>
+      <span class="phonetic">/ˈkɒntrəvɜːrsi/</span>
+      <span class="meaning">争论，争议</span>
+      <span class="example">The proposal sparked a heated controversy among scholars.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">inevitable</span>
+      <span class="phonetic">/ɪnˈevɪtəbl/</span>
+      <span class="meaning">不可避免的；必然发生的</span>
+      <span class="example">Some degree of uncertainty is inevitable in any research.</span>
+    </div>
+
+    <div class="vocab-card">
+      <span class="word">comprehensive</span>
+      <span class="phonetic">/ˌkɒmprɪˈhensɪv/</span>
+      <span class="meaning">全面的；综合的</span>
+      <span class="example">We need a comprehensive review of the current policy.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">prominent</span>
+      <span class="phonetic">/ˈprɒmɪnənt/</span>
+      <span class="meaning">突出的；著名的；显著的</span>
+      <span class="example">She is a prominent figure in the field of neuroscience.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">scrutiny</span>
+      <span class="phonetic">/ˈskruːtəni/</span>
+      <span class="meaning">仔细审查；监督</span>
+      <span class="example">The company's finances came under public scrutiny.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">justify</span>
+      <span class="phonetic">/ˈdʒʌstɪfaɪ/</span>
+      <span class="meaning">证明……正当；为……辩护</span>
+      <span class="example">How can you justify such an expensive purchase?</span>
+    </div>
+
+    <div class="vocab-card">
+      <span class="word">alleviate</span>
+      <span class="phonetic">/əˈliːvieɪt/</span>
+      <span class="meaning">减轻；缓解</span>
+      <span class="example">These measures are designed to alleviate poverty.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">exacerbate</span>
+      <span class="phonetic">/ɪɡˈzæsərbeɪt/</span>
+      <span class="meaning">加剧；使恶化</span>
+      <span class="example">Climate change may exacerbate existing social tensions.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">predominant</span>
+      <span class="phonetic">/prɪˈdɒmɪnənt/</span>
+      <span class="meaning">占主导地位的；显著的</span>
+      <span class="example">English is the predominant language of international business.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">ambiguity</span>
+      <span class="phonetic">/ˌæmbɪˈɡjuːəti/</span>
+      <span class="meaning">歧义；模棱两可</span>
+      <span class="example">The contract contains several points of ambiguity.</span>
+    </div>
+
+    <div class="vocab-card">
+      <span class="word">compelling</span>
+      <span class="phonetic">/kəmˈpelɪŋ/</span>
+      <span class="meaning">有说服力的；引人入胜的</span>
+      <span class="example">He presented a compelling argument for renewable energy.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">susceptible</span>
+      <span class="phonetic">/səˈseptəbl/</span>
+      <span class="meaning">易受影响的；敏感的</span>
+      <span class="example">Young children are particularly susceptible to advertising.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">fluctuate</span>
+      <span class="phonetic">/ˈflʌktʃueɪt/</span>
+      <span class="meaning">波动；起伏</span>
+      <span class="example">Exchange rates tend to fluctuate based on market demand.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">consolidate</span>
+      <span class="phonetic">/kənˈsɒlɪdeɪt/</span>
+      <span class="meaning">巩固；合并；加强</span>
+      <span class="example">The two companies plan to consolidate their operations next month.</span>
+    </div>
+
+    <div class="vocab-card">
+      <span class="word">distort</span>
+      <span class="phonetic">/dɪˈstɔːrt/</span>
+      <span class="meaning">扭曲；歪曲</span>
+      <span class="example">Media coverage can sometimes distort public perception.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">conspicuous</span>
+      <span class="phonetic">/kənˈspɪkjuəs/</span>
+      <span class="meaning">显眼的；引人注目的</span>
+      <span class="example">Her bright red coat made her conspicuous in the crowd.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">suppress</span>
+      <span class="phonetic">/səˈpres/</span>
+      <span class="meaning">抑制；镇压；压制</span>
+      <span class="example">It is unhealthy to suppress your emotions for a long time.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">abundant</span>
+      <span class="phonetic">/əˈbʌndənt/</span>
+      <span class="meaning">丰富的；充裕的</span>
+      <span class="example">The region is abundant in natural resources.</span>
+    </div>
+
+    <div class="vocab-card">
+      <span class="word">constrain</span>
+      <span class="phonetic">/kənˈstreɪn/</span>
+      <span class="meaning">限制；约束；强迫</span>
+      <span class="example">Financial constraints prevented the project from expanding further.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">feasible</span>
+      <span class="phonetic">/ˈfiːzəbl/</span>
+      <span class="meaning">可行的；可能的</span>
+      <span class="example">The committee concluded that the plan was technically feasible.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">persistent</span>
+      <span class="phonetic">/pərˈsɪstənt/</span>
+      <span class="meaning">坚持不懈的；持续的</span>
+      <span class="example">Persistent effort is the key to mastering a foreign language.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">intrinsic</span>
+      <span class="phonetic">/ɪnˈtrɪnzɪk/</span>
+      <span class="meaning">固有的；内在的；本质的</span>
+      <span class="example">Learning has intrinsic value beyond career prospects.</span>
+    </div>
+
+    <div class="vocab-card">
+      <span class="word">manifest</span>
+      <span class="phonetic">/ˈmænɪfest/</span>
+      <span class="meaning">表明；显现 / 明显的</span>
+      <span class="example">The symptoms of anxiety may manifest in physical form.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">undermine</span>
+      <span class="phonetic">/ˌʌndərˈmaɪn/</span>
+      <span class="meaning">逐渐削弱；破坏</span>
+      <span class="example">Constant criticism can undermine a child's self-confidence.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">pioneer</span>
+      <span class="phonetic">/ˌpaɪəˈnɪr/</span>
+      <span class="meaning">先驱；开拓者 / 开拓</span>
+      <span class="example">She is regarded as a pioneer of modern dance.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">skeptical</span>
+      <span class="phonetic">/ˈskeptɪkəl/</span>
+      <span class="meaning">怀疑的</span>
+      <span class="example">Many experts remain skeptical about the effectiveness of the drug.</span>
+    </div>
+
+    <div class="vocab-card">
+      <span class="word">counterpart</span>
+      <span class="phonetic">/ˈkaʊntərpɑːrt/</span>
+      <span class="meaning">对应的人或物；职位相当的人</span>
+      <span class="example">The CEO met with his French counterpart to discuss the merger.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">dilemma</span>
+      <span class="phonetic">/dɪˈlemə/</span>
+      <span class="meaning">困境；两难境地</span>
+      <span class="example">Doctors face an ethical dilemma when resources are limited.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">cognitive</span>
+      <span class="phonetic">/ˈkɒɡnɪtɪv/</span>
+      <span class="meaning">认知的；认识的</span>
+      <span class="example">Playing chess can improve children's cognitive abilities.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">momentum</span>
+      <span class="phonetic">/məʊˈmentəm/</span>
+      <span class="meaning">势头；动力；动量</span>
+      <span class="example">The campaign has gained considerable momentum in recent weeks.</span>
+    </div>
+
+    <div class="vocab-card">
+      <span class="word">profound</span>
+      <span class="phonetic">/prəˈfaʊnd/</span>
+      <span class="meaning">深刻的；深远的；渊博的</span>
+      <span class="example">The invention of the internet has had a profound impact on society.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">reconcile</span>
+      <span class="phonetic">/ˈrekənsaɪl/</span>
+      <span class="meaning">调和；使和解；使一致</span>
+      <span class="example">How can we reconcile economic growth with environmental protection?</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">provocative</span>
+      <span class="phonetic">/prəˈvɒkətɪv/</span>
+      <span class="meaning">挑衅的；煽动性的；引起讨论的</span>
+      <span class="example">The author is known for her provocative essays on gender politics.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">plausible</span>
+      <span class="phonetic">/ˈplɔːzəbl/</span>
+      <span class="meaning">貌似合理的；有道理的</span>
+      <span class="example">His explanation sounded plausible but lacked solid evidence.</span>
+    </div>
+
+    <div class="vocab-card">
+      <span class="word">derive</span>
+      <span class="phonetic">/dɪˈraɪv/</span>
+      <span class="meaning">源自；获得；推导出</span>
+      <span class="example">Many English words derive from Latin and Greek roots.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">paradox</span>
+      <span class="phonetic">/ˈpærədɒks/</span>
+      <span class="meaning">悖论；矛盾的人或事</span>
+      <span class="example">It's a paradox that more communication tools lead to greater loneliness.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">cumulative</span>
+      <span class="phonetic">/ˈkjuːmjələtɪv/</span>
+      <span class="meaning">累积的；渐增的</span>
+      <span class="example">The cumulative effect of sleep deprivation can be dangerous.</span>
+    </div>
+    <div class="vocab-card">
+      <span class="word">criterion</span>
+      <span class="phonetic">/kraɪˈtɪriən/</span>
+      <span class="meaning">标准；准则 (复: criteria)</span>
+      <span class="example">Academic performance is not the only criterion for admission.</span>
+    </div>
+
+  </div>
+</section>
+
+<section id="phrases">
+  <div class="section-head section-head--flame">黄金短句 · Key Phrases</div>
+  <div class="phrase-list">
+
+    <div class="phrase-row">
+      <span class="phrase-en">It is universally acknowledged that...</span>
+      <span class="phrase-zh">人们普遍认为……</span>
+      <span class="phrase-tag">写作·开篇</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">There is no denying that...</span>
+      <span class="phrase-zh">不可否认的是……</span>
+      <span class="phrase-tag">写作·论点</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">When it comes to...</span>
+      <span class="phrase-zh">当谈到……的时候</span>
+      <span class="phrase-tag">写作·引入</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">A growing body of evidence suggests that...</span>
+      <span class="phrase-zh">越来越多的证据表明……</span>
+      <span class="phrase-tag">写作·论证</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">Strike a balance between A and B</span>
+      <span class="phrase-zh">在 A 与 B 之间取得平衡</span>
+      <span class="phrase-tag">写作·建议</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">Attach great importance to...</span>
+      <span class="phrase-zh">高度重视……</span>
+      <span class="phrase-tag">翻译·高频</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">Give priority to...</span>
+      <span class="phrase-zh">优先考虑……</span>
+      <span class="phrase-tag">翻译·高频</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">Shed light on...</span>
+      <span class="phrase-zh">阐明；揭示……</span>
+      <span class="phrase-tag">阅读·常见</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">On the grounds that...</span>
+      <span class="phrase-zh">基于……的理由</span>
+      <span class="phrase-tag">写作·逻辑</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">Account for a significant proportion</span>
+      <span class="phrase-zh">占有相当大的比例</span>
+      <span class="phrase-tag">翻译·数据</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">Be conducive to...</span>
+      <span class="phrase-zh">有利于……；有助于……</span>
+      <span class="phrase-tag">写作·建议</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">Take effective measures to...</span>
+      <span class="phrase-zh">采取有效措施来……</span>
+      <span class="phrase-tag">写作·方案</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">With the rapid development of...</span>
+      <span class="phrase-zh">随着……的快速发展</span>
+      <span class="phrase-tag">翻译·背景</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">Be faced with unprecedented challenges</span>
+      <span class="phrase-zh">面临前所未有的挑战</span>
+      <span class="phrase-tag">写作·现状</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">Lay a solid foundation for...</span>
+      <span class="phrase-zh">为……打下坚实的基础</span>
+      <span class="phrase-tag">翻译·高频</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">In the long run / In the long term</span>
+      <span class="phrase-zh">从长远来看</span>
+      <span class="phrase-tag">写作·总结</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">Be deeply rooted in...</span>
+      <span class="phrase-zh">深深植根于……</span>
+      <span class="phrase-tag">翻译·文化</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">Bring about far-reaching consequences</span>
+      <span class="phrase-zh">带来深远的影响</span>
+      <span class="phrase-tag">写作·影响</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">At the expense of...</span>
+      <span class="phrase-zh">以……为代价</span>
+      <span class="phrase-tag">写作·对比</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">Only by doing so can we...</span>
+      <span class="phrase-zh">只有这样我们才能……</span>
+      <span class="phrase-tag">写作·倒装金句</span>
+    </div>
+
+  </div>
+</section>
+
+<section id="writing">
+  <div class="section-head section-head--neon">作文模板 · Writing Templates</div>
+
+  <div style="padding: 2rem clamp(2rem, 8vw, 6rem) 0.5rem; background: var(--ink);">
+    <span style="display:inline-block;background:var(--neon);color:var(--ink);padding:0.15em 1em;font-weight:700;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;">开篇 · Opening Paragraph</span>
+  </div>
+  <div class="phrase-list">
+    <div class="phrase-row">
+      <span class="phrase-en">In the contemporary world, the issue of ... has triggered heated debate.</span>
+      <span class="phrase-zh">在当今世界，……问题引发了激烈讨论。</span>
+      <span class="phrase-tag">议论文·万能开篇</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">Views on ... vary from person to person. Some hold that ..., while others argue that ...</span>
+      <span class="phrase-zh">对……的看法因人而异。有人认为……，而另一些人认为……</span>
+      <span class="phrase-tag">议论文·观点对比</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">With the remarkable improvement of people's living standards, ... has become increasingly prevalent.</span>
+      <span class="phrase-zh">随着人民生活水平的显著提高，……日益普遍。</span>
+      <span class="phrase-tag">现象类·背景引入</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">Recently, the phenomenon of ... has aroused wide public concern.</span>
+      <span class="phrase-zh">最近，……现象引起了公众的广泛关注。</span>
+      <span class="phrase-tag">现象类·万能开篇</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">As the proverb goes, "..." This saying reminds us that ...</span>
+      <span class="phrase-zh">正如谚语所说，"……"。这句话提醒我们……</span>
+      <span class="phrase-tag">名言引用·开篇</span>
+    </div>
+  </div>
+
+  <div style="padding: 2.5rem clamp(2rem, 8vw, 6rem) 0.5rem; background: var(--ink);">
+    <span style="display:inline-block;background:var(--acid);color:var(--ink);padding:0.15em 1em;font-weight:700;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;">主体 · Body Paragraph</span>
+  </div>
+  <div class="phrase-list">
+    <div class="phrase-row">
+      <span class="phrase-en">There are several factors accounting for this phenomenon. To begin with, ... Furthermore, ... Last but not least, ...</span>
+      <span class="phrase-zh">有几个因素可以解释这一现象。首先……其次……最后但同样重要的是……</span>
+      <span class="phrase-tag">原因分析·经典三段</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">The merits of ... far outweigh its demerits.</span>
+      <span class="phrase-zh">……的优点远远超过其缺点。</span>
+      <span class="phrase-tag">观点论证·权衡利弊</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">A case in point is that ... / Take ... as an example.</span>
+      <span class="phrase-zh">一个典型的例子是…… / 以……为例。</span>
+      <span class="phrase-tag">举例论证</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">It is ... that ... (强调句) — e.g. It is through hard work that we achieve success.</span>
+      <span class="phrase-zh">正是……才……（强调句）</span>
+      <span class="phrase-tag">句式升级·强调</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">Not only does ... but it also ...</span>
+      <span class="phrase-zh">……不仅……而且……</span>
+      <span class="phrase-tag">句式升级·倒装</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">What matters most is that ...</span>
+      <span class="phrase-zh">最重要的是……</span>
+      <span class="phrase-tag">句式升级·主语从句</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">Compared with ..., ... is undoubtedly more ...</span>
+      <span class="phrase-zh">与……相比，……无疑更……</span>
+      <span class="phrase-tag">对比论证</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">Without ..., we would ... / But for ..., we could not ...</span>
+      <span class="phrase-zh">如果没有……我们就……（虚拟语气）</span>
+      <span class="phrase-tag">句式升级·虚拟</span>
+    </div>
+  </div>
+
+  <div style="padding: 2.5rem clamp(2rem, 8vw, 6rem) 0.5rem; background: var(--ink);">
+    <span style="display:inline-block;background:var(--violet);color:var(--paper);padding:0.15em 1em;font-weight:700;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;">结尾 · Conclusion</span>
+  </div>
+  <div class="phrase-list">
+    <div class="phrase-row">
+      <span class="phrase-en">From what has been discussed above, we may safely draw the conclusion that ...</span>
+      <span class="phrase-zh">综上所述，我们可以得出结论：……</span>
+      <span class="phrase-tag">总结·万能模板</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">Taking all these factors into consideration, I firmly believe that ...</span>
+      <span class="phrase-zh">综合考虑所有因素，我坚信……</span>
+      <span class="phrase-tag">总结·个人观点</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">It is high time that we took effective measures to ...</span>
+      <span class="phrase-zh">我们早该采取有效措施来……（虚拟语气）</span>
+      <span class="phrase-tag">建议·呼吁行动</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">Only in this way can we embrace a brighter future.</span>
+      <span class="phrase-zh">只有这样我们才能拥抱更美好的未来。</span>
+      <span class="phrase-tag">结尾·倒装金句</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">Every coin has two sides, and ... is no exception.</span>
+      <span class="phrase-zh">事物都有两面性，……也不例外。</span>
+      <span class="phrase-tag">总结·辩证收尾</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">Provided that we remain committed to ..., a bright prospect is bound to await us.</span>
+      <span class="phrase-zh">只要我们坚持……，光明前景必将到来。</span>
+      <span class="phrase-tag">展望·积极收尾</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en">The significance of ... cannot be overemphasized.</span>
+      <span class="phrase-zh">……的重要性怎么强调都不为过。</span>
+      <span class="phrase-tag">总结·强调重要性</span>
+    </div>
+  </div>
+</section>
+
+<section id="strategy">
+  <div class="section-head section-head--flame">实战策略 · Exam Strategy</div>
+
+  <!-- 时间分配 -->
+  <div style="padding: 2rem clamp(2rem, 8vw, 6rem) 0.5rem; background: var(--ink);">
+    <span style="display:inline-block;background:var(--flame);color:var(--paper);padding:0.15em 1em;font-weight:700;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;">时间分配 · Time Allocation</span>
+  </div>
+  <div style="background:var(--ink);padding:0 clamp(2rem, 8vw, 6rem) 2rem;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;background:var(--slate);">
+
+      <div style="background:var(--ink);padding:1.6rem;display:flex;flex-direction:column;gap:0.4rem;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;">
+          <span style="font-weight:700;font-size:1.1rem;color:var(--acid);">写作 Writing</span>
+          <span style="font-size:1.4rem;font-weight:900;color:var(--flame);">30min</span>
+        </div>
+        <span style="color:var(--cement);font-size:0.85rem;">考试第一部分，先写作文。审题 3min → 列提纲 2min → 写作 22min → 检查 3min。字迹工整直接加分。</span>
+      </div>
+
+      <div style="background:var(--ink);padding:1.6rem;display:flex;flex-direction:column;gap:0.4rem;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;">
+          <span style="font-weight:700;font-size:1.1rem;color:var(--acid);">听力 Listening</span>
+          <span style="font-size:1.4rem;font-weight:900;color:var(--flame);">30min</span>
+        </div>
+        <span style="color:var(--cement);font-size:0.85rem;">提前浏览选项，预测问题方向。边听边涂答题卡——听力结束立即收卡，不留涂卡时间。</span>
+      </div>
+
+      <div style="background:var(--ink);padding:1.6rem;display:flex;flex-direction:column;gap:0.4rem;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;">
+          <span style="font-weight:700;font-size:1.1rem;color:var(--acid);">阅读 Reading</span>
+          <span style="font-size:1.4rem;font-weight:900;color:var(--flame);">40min</span>
+        </div>
+        <span style="color:var(--cement);font-size:0.85rem;">仔细阅读 2 篇×10min；长篇匹配 12min；选词填空 8min（性价比最低，放最后做）。</span>
+      </div>
+
+      <div style="background:var(--ink);padding:1.6rem;display:flex;flex-direction:column;gap:0.4rem;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;">
+          <span style="font-weight:700;font-size:1.1rem;color:var(--acid);">翻译 Translation</span>
+          <span style="font-size:1.4rem;font-weight:900;color:var(--flame);">25min</span>
+        </div>
+        <span style="color:var(--cement);font-size:0.85rem;">先通读全段再逐句翻译。不会的词用上位词或解释性表达绕过去，宁顺勿硬翻。</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 做题顺序 -->
+  <div style="padding: 2rem clamp(2rem, 8vw, 6rem) 0.5rem; background: var(--ink);">
+    <span style="display:inline-block;background:var(--neon);color:var(--ink);padding:0.15em 1em;font-weight:700;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;">做题顺序 · Optimal Sequence</span>
+  </div>
+  <div class="phrase-list">
+    <div class="phrase-row">
+      <span class="phrase-en" style="font-size:2rem;font-weight:900;line-height:1;min-width:auto;width:2ch;text-align:center;">1</span>
+      <span class="phrase-zh" style="font-weight:700;color:var(--acid);">写作 → 听力</span>
+      <span style="color:var(--cement);font-size:0.85rem;">前 60 分钟固定顺序，收两次答题卡，没有回头路。</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en" style="font-size:2rem;font-weight:900;line-height:1;min-width:auto;width:2ch;text-align:center;">2</span>
+      <span class="phrase-zh" style="font-weight:700;color:var(--acid);">仔细阅读 ×2</span>
+      <span style="color:var(--cement);font-size:0.85rem;">分值最高（每篇 5 题×14.2 分），正确率优先，必须吃下。</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en" style="font-size:2rem;font-weight:900;line-height:1;min-width:auto;width:2ch;text-align:center;">3</span>
+      <span class="phrase-zh" style="font-weight:700;color:var(--acid);">翻译</span>
+      <span style="color:var(--cement);font-size:0.85rem;">分值 106.5 分，趁脑子清醒拿下。</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en" style="font-size:2rem;font-weight:900;line-height:1;min-width:auto;width:2ch;text-align:center;">4</span>
+      <span class="phrase-zh" style="font-weight:700;color:var(--acid);">长篇匹配</span>
+      <span style="color:var(--cement);font-size:0.85rem;">10 题×7.1 分，关键词定位快，扫读+同义替换。</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en" style="font-size:2rem;font-weight:900;line-height:1;min-width:auto;width:2ch;text-align:center;">5</span>
+      <span class="phrase-zh" style="font-weight:700;color:var(--acid);">选词填空</span>
+      <span style="color:var(--cement);font-size:0.85rem;">性价比最低（10 题×3.55 分），剩余时间做，不会就蒙。</span>
+    </div>
+  </div>
+
+  <!-- 分题型技巧 -->
+  <div style="padding: 2.5rem clamp(2rem, 8vw, 6rem) 0.5rem; background: var(--ink);">
+    <span style="display:inline-block;background:var(--violet);color:var(--paper);padding:0.15em 1em;font-weight:700;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;">分题型技巧 · Section Tips</span>
+  </div>
+  <div class="phrase-list">
+
+    <!-- 听力 -->
+    <div class="phrase-row" style="border-left:4px solid var(--flame);">
+      <span class="phrase-en" style="color:var(--flame);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;min-width:8ch;">听力</span>
+      <span class="phrase-zh" style="font-weight:600;">视听一致原则：听到什么选什么，80% 正确答案是原文复现或同义替换。长对话关注开头 3 句和结尾，讲座关注逻辑词（however / but / in fact）后面。</span>
+    </div>
+
+    <!-- 仔细阅读 -->
+    <div class="phrase-row" style="border-left:4px solid var(--acid);">
+      <span class="phrase-en" style="color:var(--acid);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;min-width:8ch;">仔细阅读</span>
+      <span class="phrase-zh" style="font-weight:600;">题文同序：题目顺序 = 文章顺序。先读题干（不看选项），定位原文关键句，再对比选项。正确选项通常是原文的同义改写，照抄原词的往往是干扰项。</span>
+    </div>
+
+    <!-- 长篇匹配 -->
+    <div class="phrase-row" style="border-left:4px solid var(--neon);">
+      <span class="phrase-en" style="color:var(--neon);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;min-width:8ch;">长篇匹配</span>
+      <span class="phrase-zh" style="font-weight:600;">先扫 10 个题干，圈人名/地名/数字/专有名词作关键词。快速扫读段落首尾句+转折处，定位关键词或其同义替换即匹配。一段可能对应多题。</span>
+    </div>
+
+    <!-- 选词填空 -->
+    <div class="phrase-row" style="border-left:4px solid var(--violet);">
+      <span class="phrase-en" style="color:var(--violet);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;min-width:8ch;">选词填空</span>
+      <span class="phrase-zh" style="font-weight:600;">先标 15 个备选词的词性（n./v./adj./adv.），分析空格所需词性→缩小范围→按语义匹配。不会的果断跳过，不要恋战。</span>
+    </div>
+
+    <!-- 翻译 -->
+    <div class="phrase-row" style="border-left:4px solid var(--acid);">
+      <span class="phrase-en" style="color:var(--acid);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;min-width:8ch;">翻译</span>
+      <span class="phrase-zh" style="font-weight:600;">核心原则：意思到位即可，不追求字面对应。遇到不会的词→上位词替代（"针灸"→traditional Chinese medical treatment），遇到长句→拆成短句。语序调成英文习惯（主谓宾）。</span>
+    </div>
+
+    <!-- 写作 -->
+    <div class="phrase-row" style="border-left:4px solid var(--flame);">
+      <span class="phrase-en" style="color:var(--flame);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;min-width:8ch;">写作</span>
+      <span class="phrase-zh" style="font-weight:600;">字迹 = 隐形的 10 分。三段式结构（引入·论述·总结）。每段开头用模板句，中间用 2-3 个高级词汇（如 significant / crucial / indispensable）点缀，结尾用倒装或虚拟语气收尾。</span>
+    </div>
+
+  </div>
+
+  <!-- 黄金 checklist -->
+  <div style="padding: 2.5rem clamp(2rem, 8vw, 6rem) 0.5rem; background: var(--ink);">
+    <span style="display:inline-block;background:var(--acid);color:var(--ink);padding:0.15em 1em;font-weight:700;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;">考前必带 · Checklist</span>
+  </div>
+  <div style="background:var(--ink);padding:0 clamp(2rem, 8vw, 6rem) 2.5rem;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;background:var(--slate);">
+      <div style="background:var(--ink);padding:1.2rem 1.6rem;"><span style="color:var(--acid);font-weight:700;">准考证 + 身份证</span><br><span style="color:var(--cement);font-size:0.8rem;">打印 2 份，分开放</span></div>
+      <div style="background:var(--ink);padding:1.2rem 1.6rem;"><span style="color:var(--acid);font-weight:700;">2B 铅笔 + 橡皮</span><br><span style="color:var(--cement);font-size:0.8rem;">涂卡专用，削好备用</span></div>
+      <div style="background:var(--ink);padding:1.2rem 1.6rem;"><span style="color:var(--acid);font-weight:700;">黑色签字笔 ×2</span><br><span style="color:var(--cement);font-size:0.8rem;">0.5mm，写作翻译用</span></div>
+      <div style="background:var(--ink);padding:1.2rem 1.6rem;"><span style="color:var(--acid);font-weight:700;">调频耳机</span><br><span style="color:var(--cement);font-size:0.8rem;">提前试音，备好电池</span></div>
+      <div style="background:var(--ink);padding:1.2rem 1.6rem;"><span style="color:var(--acid);font-weight:700;">手表（非电子）</span><br><span style="color:var(--cement);font-size:0.8rem;">教室可能没有钟</span></div>
+      <div style="background:var(--ink);padding:1.2rem 1.6rem;"><span style="color:var(--acid);font-weight:700;">水 + 巧克力</span><br><span style="color:var(--cement);font-size:0.8rem;">中场补充能量</span></div>
+    </div>
+  </div>
+
+  <!-- 考场红线 -->
+  <div style="padding: 2rem clamp(2rem, 8vw, 6rem) 0.5rem; background: var(--ink);">
+    <span style="display:inline-block;background:var(--flame);color:var(--paper);padding:0.15em 1em;font-weight:700;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;">考场红线 · Red Lines</span>
+  </div>
+  <div class="phrase-list">
+    <div class="phrase-row">
+      <span class="phrase-en" style="font-size:2rem;font-weight:900;line-height:1;min-width:auto;width:2ch;text-align:center;color:var(--flame);">!</span>
+      <span class="phrase-zh" style="font-weight:600;color:var(--paper);">听力结束立即收答题卡 1，必须边听边涂，没有单独涂卡时间。</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en" style="font-size:2rem;font-weight:900;line-height:1;min-width:auto;width:2ch;text-align:center;color:var(--flame);">!</span>
+      <span class="phrase-zh" style="font-weight:600;color:var(--paper);">作文和翻译在答题卡 2 正反面，不要写错位置。</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en" style="font-size:2rem;font-weight:900;line-height:1;min-width:auto;width:2ch;text-align:center;color:var(--flame);">!</span>
+      <span class="phrase-zh" style="font-weight:600;color:var(--paper);">手机严禁带入考场，关机放包里也不行——一旦发现按作弊处理。</span>
+    </div>
+    <div class="phrase-row">
+      <span class="phrase-en" style="font-size:2rem;font-weight:900;line-height:1;min-width:auto;width:2ch;text-align:center;color:var(--flame);">!</span>
+      <span class="phrase-zh" style="font-weight:600;color:var(--paper);">不要纠结一道题超过 2 分钟。选词填空宁愿蒙一个也不要空着——空着 0 分，蒙也有概率。</span>
+    </div>
+  </div>
+
+</section>
+
+<footer class="footer">
+  <span class="count"><span>40</span> Words · <span>40</span> Phrases · <span>All</span> Strategies</span>
+  <p style="margin-top:1.5rem;">Brutalist High-Contrast · Built for CET-6 Sprint · 2026</p>
+</footer>
+
+</body>
+</html>
